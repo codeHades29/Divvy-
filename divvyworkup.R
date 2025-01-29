@@ -30,7 +30,6 @@ data12 <- read.csv("C:/Users/austi/Downloads/divydata/202412-divvy-tripdata.csv"
 
 ### Combine Data and Save Locally
 
-
 data_all <- rbind(
   data01,
   data02,
@@ -50,9 +49,7 @@ data_all <- rbind(
 
 write.csv(("C:/Users/austi/Downloads/divydata/data_all.csv"))
 
-
-
-### Remove Unnecessary Data For PC Peformance Gain
+### Remove Unnecessary Data
 rm(data01)
 rm(data02)
 rm(data03)
@@ -130,33 +127,13 @@ View(
       median_length = median(time_rode)
     )
 )
+
 ### Time rode on average per day of the week by Customer Type
 view(analysis %>%
        group_by(week_day, customer_type) %>%
        summarise(avg_length = mean(time_rode)))
 
-
 ### Validation of Tableau
 count(analysis, customer_type, bike_type)
 
-
-
-
-#TIME FOR VIZ
-
-## Footnotes For Coder(Me)
-#### How to delete a column
-data01 <- data01 %>% select(-year)
-
-
-
-#### For reloading
-analysis <- read.csv("C:/Users/austi/Downloads/divydata/analysis.csv")
-#### another way
-View(
-  aggregate(
-    analysis$time_rode ~ analysis$customer_type +
-      analysis$week_day,
-    FUN = mean
-  )
-)
+#TIME FOR VIZ/Tableua
